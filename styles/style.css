@@ -1,2 +1,105 @@
 @charset "utf-8";
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;2,300&display=swap');
+img,ion-icon,a{
+    cursor: pointer;
+}
 
+body{
+    background-color: #E5E5E5;
+}
+
+/*header*/
+header{
+    background-color: #FFFF;
+    margin-bottom: 26px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+header > div {
+    margin: 0px 22px;
+}
+
+img{
+    width: 75px;
+    height: 65px;
+}
+/*main*/
+p{
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    margin: 3px 3px;
+    line-height: 20px;
+}
+
+#ipeople{
+    width: 42px;
+    height: 31px;
+}
+
+.msg{
+    min-height: 40px;
+    margin: 3px 0px;
+
+    display: flex;
+    align-items: center;
+}
+/*  \/estilos alterados com base na interação com usuário\/  */
+.all{
+    background-color: #FFFFFF;
+}
+.only{
+    background-color: #FFDEDE;
+}
+.action{
+    background-color: #DCDCDC;
+}
+/*  /\estilos alterados com base na interação com usuário/\  */
+
+.username{
+    font-weight: 700;
+}
+
+.hour{
+    color: #AAAAAA;
+}
+/*footer*/
+footer{
+    background-color: #FFFF;
+    height: 80px;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    box-shadow: 2px 1px 8px rgba(0, 0, 0, 0.1);
+
+    position: fixed;
+    bottom: 0px;
+}
+
+
+
+#itext{
+    margin-left: 18px;
+    
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    font-style: italic;
+
+    border: none;
+}
+#isub{
+    margin-left: 18px;
+}
+
+#ishare{
+    font-size: 26px;
+    margin-right: 18px;
+}

@@ -3,3 +3,7 @@
     margin: 0;
     box-sizing: border-box;
 }
+#itext:focus{
+    outline: 0;
+    box-shadow: 0 0 0 0;
+}
