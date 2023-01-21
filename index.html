@@ -18,6 +18,17 @@
         </div>
     </header>
     <main>
+        <div class="msg action">
+        <p class="hour">
+            (${time})
+        </p>
+        <p class="text">
+            <span>
+                ${userName}
+            </span>
+            ${message}
+        </p>    
+    </div>
     </main>
     <footer>
         <div>
@@ -25,7 +36,7 @@
             <p id="isub"></p>
         </div>
         <div>
-            <ion-icon name="paper-plane-outline" id="ishare"></ion-icon>
+            <ion-icon name="paper-plane-outline" id="ishare" onclick="sendMsg()"></ion-icon>
         </div>
     </footer>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>

@@ -29,6 +29,7 @@ img{
     height: 65px;
 }
 /*main*/
+
 p{
     font-size: 14px;
     font-family: 'Roboto', sans-serif;
@@ -50,18 +51,17 @@ p{
     align-items: center;
 }
 /*  \/estilos alterados com base na interação com usuário\/  */
-.all{
+.message{
     background-color: #FFFFFF;
 }
-.only{
+.private_message{
     background-color: #FFDEDE;
 }
-.action{
+.status{
     background-color: #DCDCDC;
 }
 /*  /\estilos alterados com base na interação com usuário/\  */
-
-.username{
+span{
     font-weight: 700;
 }
 
