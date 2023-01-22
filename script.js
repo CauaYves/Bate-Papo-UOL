@@ -3,7 +3,12 @@ const userName = prompt('Qual seu nome?');
 const objName = {name:userName};
 const main = document.querySelector('main');
 
-function sendMsg(){  //INCOMPLETA
+function reload() {
+    alert('Usuário deslogado, recarregando...')
+    window.location.reload()
+}
+
+function sendMsg(){
 
     let msg = document.getElementById('itext');
     if(msg.value === ''){
@@ -16,6 +21,8 @@ function sendMsg(){  //INCOMPLETA
             type: "message" // 
         }
         const promise = axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', obj);
+        promise.then(searchMsg)
+        promise.catch(reload)
         msg.value = ''
     }
 
@@ -77,19 +84,19 @@ let min = dataAtual.getMinutes();
 let sec = dataAtual.getSeconds();
 let time = `${horas}:${min}:${sec}`;
 
-function fail(){ //OK
+function fail(){ 
 
     objName.name = prompt('Nome indisponível, insira outro')
     joinChat()
 
 }
-function onLine(){//OK
+function onLine(){
 
     axios.post('https://mock-api.driven.com.br/api/v6/uol/status', objName)
     console.log("online")
 }
 
-function joinChat(){//OK
+function joinChat(){
 
     const promise = axios.post('https://mock-api.driven.com.br/api/v6/uol/participants', objName)
     promise.then(searchMsg)
