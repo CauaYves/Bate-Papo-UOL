@@ -1,11 +1,10 @@
 //variáveis globais
-const main = document.querySelector('main');
 const userName = prompt('Qual seu nome?');
 const objName = {name:userName};
+const main = document.querySelector('main');
+
 let lastMsg = '';
 let lastTime = 0;
-
-
 function sendMsg(){  //INCOMPLETA
 
     let msg = document.getElementById('itext');
@@ -24,50 +23,54 @@ function sendMsg(){  //INCOMPLETA
 
 }
 
-function updateMsg(){
+function displayChat(from, text, time, to, type) {
 
-    lastMsg = main.childNodes[main.childNodes.length - 2]
-    lastTime = lastMsg.getAttribute('data-time')  
-    searchMsg()
-
+    main.innerHTML += 
+        `
+            <div class="msg ${type} data-test="message"">
+                <p class="hour">
+                    (${time})
+                </p>
+                <p class="text">
+                    <span>
+                        ${from}
+                    </span>
+                    ${text}
+                </p>    
+            </div>
+        `
+        window.scroll({
+            top: 3700,
+        })
 }
+function sendToArr(res) {
 
-function showMsg(res) {//consertar a lógica para que as mensagens continuem sendo exibidas.
+    main.innerHTML = ''
+    let arr = res.data;
+    for(let i = 0; i < 100; i++){
 
-    let time;
-    let user;
-    let text;
-    let type;
-    let dataTime = 0;
+        let from = arr[i].from;
+        let text = arr[i].text;
+        let time = arr[i].time;
+        let to = arr[i].to;
+        let type = arr[i].type;
 
-    for(let i = 0; i < res.data.length; i++ ){
+        displayChat(from, text, time, to, type)
 
-        time = res.data[i].time;
-        user = res.data[i].from;
-        text = res.data[i].text;
-        type = res.data[i].type;
-        dataTime = res.data[i].time[6];
-
-        displayOnChat(time, user, text, type, dataTime)
-
-   }
-    
+    }
 }
 
 function searchMsg(){
     const promise = axios.get('https://mock-api.driven.com.br/api/v6/uol/messages');
-    promise.then(showMsg)
+    promise.then(sendToArr)
+    promise.then(setInterval(searchMsg ,3000))
 }
 
 let dataAtual = new Date();
 let horas = dataAtual.getHours();
 let min = dataAtual.getMinutes();
 let sec = dataAtual.getSeconds();
-let time = `${horas}:${min}:${sec}`
-
-function sucess(){
-    searchMsg()
-}
+let time = `${horas}:${min}:${sec}`;
 
 function fail(){ //OK
 
@@ -81,32 +84,30 @@ function onLine(){//OK
     console.log("online")
 }
 
-function displayOnChat(time ,userName, message, type, dataTime) { //NOT OK
-
-    main.innerHTML += 
-        `
-        <div class="msg ${type} data-time="${dataTime}" data-test="message"">
-            <p class="hour">
-                (${time})
-            </p>
-            <p class="text">
-                <span>
-                    ${userName}
-                </span>
-                ${message}
-            </p>    
-        </div>
-        `
-}
-
 function joinChat(){//OK
 
     const promise = axios.post('https://mock-api.driven.com.br/api/v6/uol/participants', objName)
-    promise.then(sucess)
-    promise.catch(fail)
+    promise.then(searchMsg)
 
 }
 setInterval(onLine, 5000)
-
-//realocar joinChat() para iniciar
 joinChat()
+//realocar joinChat() para iniciar
+
+// function displayOnChat(time ,userName, message, type, dataTime) { //NOT OK
+
+//     main.innerHTML += 
+//         `
+//         <div class="msg ${type} data-time="${dataTime}" data-test="message"">
+//             <p class="hour">
+//                 (${time})
+//             </p>
+//             <p class="text">
+//                 <span>
+//                     ${userName}
+//                 </span>
+//                 ${message}
+//             </p>    
+//         </div>
+//         `
+// }
