@@ -68,6 +68,7 @@ function sendToArr(res) {
 function searchMsg(){
     const promise = axios.get('https://mock-api.driven.com.br/api/v6/uol/messages');
     promise.then(sendToArr)
+    promise.then(setInterval(searchMsg ,3000))
 }
 
 let dataAtual = new Date();
@@ -91,8 +92,8 @@ function onLine(){//OK
 function joinChat(){//OK
 
     const promise = axios.post('https://mock-api.driven.com.br/api/v6/uol/participants', objName)
-    promise.then(setInterval(searchMsg ,3000))
-    promise.catch(fail)
+    promise.then(searchMsg)
+
 }
 setInterval(onLine, 5000)
 joinChat()
