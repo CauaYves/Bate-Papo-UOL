@@ -3,8 +3,6 @@ const userName = prompt('Qual seu nome?');
 const objName = {name:userName};
 const main = document.querySelector('main');
 
-let lastMsg = '';
-let lastTime = 0;
 function sendMsg(){  //INCOMPLETA
 
     let msg = document.getElementById('itext');
@@ -13,7 +11,7 @@ function sendMsg(){  //INCOMPLETA
     }else{
         let obj = {
             from: userName,
-            to: Todos,
+            to: 'todos',
             text: msg.value,
             type: "message" // 
         }
@@ -40,7 +38,7 @@ function displayChat(from, text, time, to, type) {
             </div>
         `
         window.scroll({
-            top: 3700,
+            top: 3900,
         })
 }
 function sendToArr(res) {
@@ -55,8 +53,12 @@ function sendToArr(res) {
         let to = arr[i].to;
         let type = arr[i].type;
 
-        displayChat(from, text, time, to, type)
-
+        if( type === 'status' || type === 'message' ){
+            displayChat(from, text, time, to, type)
+        }
+        if(type === 'private_message' && (userName === to || userName === from)){
+            displayChat(from, text, time, to, type)
+        }
     }
 }
 
@@ -92,22 +94,3 @@ function joinChat(){//OK
 }
 setInterval(onLine, 5000)
 joinChat()
-//realocar joinChat() para iniciar
-
-// function displayOnChat(time ,userName, message, type, dataTime) { //NOT OK
-
-//     main.innerHTML += 
-//         `
-//         <div class="msg ${type} data-time="${dataTime}" data-test="message"">
-//             <p class="hour">
-//                 (${time})
-//             </p>
-//             <p class="text">
-//                 <span>
-//                     ${userName}
-//                 </span>
-//                 ${message}
-//             </p>    
-//         </div>
-//         `
-// }
