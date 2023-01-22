@@ -55,9 +55,12 @@ function sendToArr(res) {
 
         if( type === 'status' || type === 'message' ){
             displayChat(from, text, time, to, type)
-        }
-        if(type === 'private_message' && (userName === to || userName === from)){
+            console.log('!')
+            console.log(type)
+        }else if(type === 'private_message' && (userName === to || userName === from)){
             displayChat(from, text, time, to, type)
+            console.log('?')
+            console.log(type)
         }
     }
 }
@@ -65,7 +68,6 @@ function sendToArr(res) {
 function searchMsg(){
     const promise = axios.get('https://mock-api.driven.com.br/api/v6/uol/messages');
     promise.then(sendToArr)
-    promise.then(setInterval(searchMsg ,3000))
 }
 
 let dataAtual = new Date();
@@ -89,8 +91,7 @@ function onLine(){//OK
 function joinChat(){//OK
 
     const promise = axios.post('https://mock-api.driven.com.br/api/v6/uol/participants', objName)
-    promise.then(searchMsg)
-
+    promise.then(setInterval(searchMsg ,3000))
 }
 setInterval(onLine, 5000)
 joinChat()
