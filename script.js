@@ -92,6 +92,7 @@ function joinChat(){//OK
 
     const promise = axios.post('https://mock-api.driven.com.br/api/v6/uol/participants', objName)
     promise.then(setInterval(searchMsg ,3000))
+    promise.catch(fail)
 }
 setInterval(onLine, 5000)
 joinChat()
