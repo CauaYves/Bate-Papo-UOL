@@ -62,12 +62,8 @@ function sendToArr(res) {
 
         if( type === 'status' || type === 'message' ){
             displayChat(from, text, time, to, type)
-            console.log('!')
-            console.log(type)
         }else if(type === 'private_message' && (userName === to || userName === from)){
             displayChat(from, text, time, to, type)
-            console.log('?')
-            console.log(type)
         }
     }
 }
@@ -91,9 +87,7 @@ function fail(){
 
 }
 function onLine(){
-
     axios.post('https://mock-api.driven.com.br/api/v6/uol/status', objName)
-    console.log("online")
 }
 
 function joinChat(){
