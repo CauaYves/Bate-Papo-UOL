@@ -1,5 +1,4 @@
 @charset "utf-8";
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;2,300&display=swap');
 img,ion-icon,a{
     cursor: pointer;
 }
@@ -29,6 +28,10 @@ img{
     height: 65px;
 }
 /*main*/
+
+main{
+    margin-bottom: 80px;
+}
 
 p{
     font-size: 14px;
