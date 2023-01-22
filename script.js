@@ -25,7 +25,7 @@ function displayChat(from, text, time, to, type) {
 
     main.innerHTML += 
         `
-            <div class="msg ${type} data-test="message"">
+            <div class="msg ${type}" data-test="message">
                 <p class="hour">
                     (${time})
                 </p>
