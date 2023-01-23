@@ -72,7 +72,7 @@ function sendToArr(res) {
 function searchMsg(){
     const promise = axios.get('https://mock-api.driven.com.br/api/v6/uol/messages');
     promise.then(sendToArr)
-    promise.then(setInterval(searchMsg ,3000))
+    promise.then(setTimeout(searchMsg ,3000))
     console.log('procurando mensagens')
 }
 
