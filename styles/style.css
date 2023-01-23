@@ -5,6 +5,7 @@ img,ion-icon,a{
 
 body{
     background-color: #E5E5E5;
+    margin: auto;
 }
 
 /*header*/
@@ -30,6 +31,7 @@ img{
 /*main*/
 
 main{
+    max-width: 500px;
     margin-bottom: 80px;
 }
 

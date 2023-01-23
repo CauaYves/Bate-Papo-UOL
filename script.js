@@ -40,6 +40,8 @@ function displayChat(from, text, time, to, type) {
                     <span>
                         ${from}
                     </span>
+                    para
+                  <strong>${to}</strong>
                     ${text}
                 </p>    
             </div>
