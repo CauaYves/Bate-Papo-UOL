@@ -1,15 +1,14 @@
 //variáveis globais
-const userName = prompt('Qual seu nome?');
-const objName = {name:userName};
 const main = document.querySelector('main');
-
+let userName;
+let objName;
 function reload() {
     alert('Usuário deslogado, recarregando...')
     window.location.reload()
 }
 
 function sendMsg(){
-
+    console.log('enviando mensagem')
     let msg = document.getElementById('itext');
     if(msg.value === ''){
         alert('campo de mensagem vazio')
@@ -51,7 +50,7 @@ function displayChat(from, text, time, to, type) {
         })
 }
 function sendToArr(res) {
-
+    console.log('enviando para o HTML')
     main.innerHTML = ''
     let arr = res.data;
     for(let i = 0; i < 100; i++){
@@ -74,29 +73,28 @@ function searchMsg(){
     const promise = axios.get('https://mock-api.driven.com.br/api/v6/uol/messages');
     promise.then(sendToArr)
     promise.then(setInterval(searchMsg ,3000))
+    console.log('procurando mensagens')
 }
 
-let dataAtual = new Date();
-let horas = dataAtual.getHours();
-let min = dataAtual.getMinutes();
-let sec = dataAtual.getSeconds();
-let time = `${horas}:${min}:${sec}`;
-
 function fail(){ 
-
-    objName.name = prompt('Nome indisponível, insira outro')
     joinChat()
+    console.log('falhou ao entrar no chat')
 
 }
 function onLine(){
     axios.post('https://mock-api.driven.com.br/api/v6/uol/status', objName)
+    console.log('online')
 }
 
 function joinChat(){
-
+    console.log('entrou no chat')
+    userName = prompt('Qual seu nome?');
+    objName = {name:userName};
     const promise = axios.post('https://mock-api.driven.com.br/api/v6/uol/participants', objName)
     promise.then(searchMsg)
+    promise.then(setInterval(onLine, 5000))
+    promise.catch(fail)
 
 }
-setInterval(onLine, 5000)
+
 joinChat()
